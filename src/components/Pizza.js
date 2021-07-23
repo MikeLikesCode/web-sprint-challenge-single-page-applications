@@ -47,7 +47,7 @@ export default function Pizza() {
 
   const postNewOrder = (newOrder) => {
     axios
-      .post("https://reqres.in/api/order", newOrder)
+      .post("https://reqres.in/api/orders", newOrder)
       .then((resp) => {
         console.log(resp);
         setOrder(resp.data);

@@ -12,33 +12,44 @@ const PizzaImage = styled.img`
 const OrderInformation = styled.div`
   margin: 0 auto;
   width: 60%;
-  text-align:center;
+  text-align: center;
 
-  h2{
-      margin:0;
+  h2 {
+    margin: 0;
   }
 `;
 
 export default function Order(props) {
   console.log(props);
-  const { name, sauce, size, special, toppings } = props.order;
+  const { order } = props;
+  const toppings = [];
 
-  if (!props.order.toppings) return <h1>Loading...</h1>;
+  for(const [key,value] of Object.entries(order)){
+    if(value === true){
+      toppings.push(key)
+    }
+  }
+
+  if (!order) return <h1>Loading...</h1>;
 
   return (
     <div>
       <PizzaImage src={PizzaImg} />
       <OrderInformation>
         <h2>Here are your order details:</h2>
-        <div> Name: {name}</div>
-        <div> Sauce: {sauce}</div>
-        <div> Size: {size}</div>
-        <div> Special Instructions: {special}</div>
+        <div> Name: {order.name}</div>
+        <div> Sauce: {order.sauce}</div>
+        <div> Size: {order.size}</div>
+        {order.special ? (
+          <div> Special Instructions: {order.special}</div>
+        ) : null}
         <div>
           Toppings:
-          {toppings.map((topping) => (
-            <div style={{textTransform:'capitalize'}}>{topping}</div>
-          ))}{" "}
+          {
+            toppings.map(topping => (<div>
+                {topping}
+               </div>))
+          }
         </div>
       </OrderInformation>
     </div>

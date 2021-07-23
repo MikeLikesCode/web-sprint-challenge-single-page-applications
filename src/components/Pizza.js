@@ -75,13 +75,18 @@ export default function Pizza() {
   };
 
   const formSubmit = () => {
-    const newOrder = {
+
+    
+
+    let newOrder = {
       name: formValues.name.trim(),
       size: formValues.size.trim(),
       sauce: formValues.sauce.trim(),
-      toppings: mainToppings.filter((topping) => formValues[topping]),
       special: formValues.special.trim(),
     };
+
+    mainToppings.filter((topping) => formValues[topping] ? newOrder = {...newOrder, [topping] : true} : newOrder = {...newOrder, [topping] : false})
+
     postNewOrder(newOrder);
     history.push("/pizza/confirm")
   };

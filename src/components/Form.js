@@ -79,7 +79,7 @@ export default function Form(props) {
     <FormContainer>
     <form id="pizza-form" onSubmit={onSubmit}>
       <div>
-        <div>{errors.name}</div>
+        <div>{errors.fullName}</div>
         <div>{errors.size}</div>
         <div>{errors.sauce}</div>
         <div>{errors.toppings}</div>
@@ -91,10 +91,10 @@ export default function Form(props) {
       <label>
         Name
         <input
-          value={values.name}
+          value={values.fullName}
           onChange={onChange}
           id="name-input"
-          name="name"
+          name="fullName"
           type="text"
         />
       </label>

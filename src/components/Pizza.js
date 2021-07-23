@@ -7,14 +7,14 @@ import FormSchema from "../validation/formSchema";
 import * as yup from "yup";
 
 const initialFormValues = {
-  name: "",
+  fullName: "",
   size: "",
   sauce: "",
   special: "",
 };
 
 const initialFormErrors = {
-  name: "",
+  fullName: "",
   size: "",
   sauce: "",
   toppings: "",
@@ -38,8 +38,13 @@ const mainToppings = [
   "exCheese",
 ];
 
+const initalOrder = {
+  fullName: "",
+  size: "",
+  sauce: "",
+};
 export default function Pizza() {
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState(initalOrder);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(true);
@@ -49,8 +54,9 @@ export default function Pizza() {
     axios
       .post("https://reqres.in/api/orders", newOrder)
       .then((resp) => {
-        console.log(resp);
+        console.log(resp.data);
         setOrder(resp.data);
+        history.push("/pizza/confirm")
       })
       .catch((err) => {
         console.log(err);
@@ -75,11 +81,9 @@ export default function Pizza() {
   };
 
   const formSubmit = () => {
-
     
-
     let newOrder = {
-      name: formValues.name.trim(),
+      fullName: formValues.fullName.trim(),
       size: formValues.size.trim(),
       sauce: formValues.sauce.trim(),
       special: formValues.special.trim(),
@@ -87,8 +91,8 @@ export default function Pizza() {
 
     mainToppings.filter((topping) => formValues[topping] ? newOrder = {...newOrder, [topping] : true} : newOrder = {...newOrder, [topping] : false})
 
+    console.log(newOrder);
     postNewOrder(newOrder);
-    history.push("/pizza/confirm")
   };
 
   useEffect(() => {

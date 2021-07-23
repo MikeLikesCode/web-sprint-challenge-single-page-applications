@@ -37,7 +37,7 @@ export default function Order(props) {
       <PizzaImage src={PizzaImg} />
       <OrderInformation>
         <h2>Here are your order details:</h2>
-        <div> Name: {order.name}</div>
+        <div> Name: {order.fullName}</div>
         <div> Sauce: {order.sauce}</div>
         <div> Size: {order.size}</div>
         {order.special ? (
@@ -46,7 +46,7 @@ export default function Order(props) {
         <div>
           Toppings:
           {
-            toppings.map(topping => (<div>
+            toppings.map((topping,idx) => (<div key={idx}>
                 {topping}
                </div>))
           }

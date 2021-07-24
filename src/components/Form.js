@@ -105,6 +105,7 @@ export default function Form(props) {
       
       <SectionContent>
       <SizeSelect id="size-dropdown" name="size" onChange={onChange} value={values.size}>
+          <option value="Choose a size">Choose a size</option>
           <option value="Small">Small</option>
           <option value="Medium">Medium</option>
           <option value="Large">Large</option>

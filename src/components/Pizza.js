@@ -9,14 +9,12 @@ import * as yup from "yup";
 const initialFormValues = {
   fullName: "",
   size: "",
-  sauce: "",
   special: "",
 };
 
 const initialFormErrors = {
   fullName: "",
   size: "",
-  sauce: "",
   toppings: "",
   special: "",
 };
@@ -41,7 +39,6 @@ const mainToppings = [
 const initalOrder = {
   fullName: "",
   size: "",
-  sauce: "",
 };
 export default function Pizza() {
   const [order, setOrder] = useState(initalOrder);
@@ -85,20 +82,23 @@ export default function Pizza() {
     let newOrder = {
       fullName: formValues.fullName.trim(),
       size: formValues.size.trim(),
-      sauce: formValues.sauce.trim(),
       special: formValues.special.trim(),
     };
 
-    mainToppings.filter((topping) => formValues[topping] ? newOrder = {...newOrder, [topping] : true} : newOrder = {...newOrder, [topping] : false})
+    mainToppings.filter((topping) => formValues[topping] === true ? newOrder = {...newOrder, [topping] : true} : newOrder = {...newOrder, [topping] : false})
 
     console.log(newOrder);
     postNewOrder(newOrder);
   };
 
   useEffect(() => {
+    let isMounted = true
+    if (isMounted){
     FormSchema.isValid(formValues).then((valid) =>
       valid ? setDisabled(false) : setDisabled(true)
-    );
+    )}
+
+    return () => { isMounted = false}
   }, [formValues]);
 
   return (

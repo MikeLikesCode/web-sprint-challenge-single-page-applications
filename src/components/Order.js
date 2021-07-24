@@ -24,13 +24,13 @@ export default function Order(props) {
   const { order } = props;
   const toppings = [];
 
+  if (!order) return <h1>Loading...</h1>;
+
   for(const [key,value] of Object.entries(order)){
     if(value === true){
       toppings.push(key)
     }
   }
-
-  if (!order) return <h1>Loading...</h1>;
 
   return (
     <div>
@@ -38,7 +38,6 @@ export default function Order(props) {
       <OrderInformation>
         <h2>Here are your order details:</h2>
         <div> Name: {order.fullName}</div>
-        <div> Sauce: {order.sauce}</div>
         <div> Size: {order.size}</div>
         {order.special ? (
           <div> Special Instructions: {order.special}</div>

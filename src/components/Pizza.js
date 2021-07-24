@@ -23,17 +23,7 @@ const mainToppings = [
   "pepperoni",
   "sausage",
   "caBacon",
-  "siSausage",
-  "grChicken",
-  "onions",
-  "grPepper",
-  "diTomato",
-  "blOlives",
-  "roGarlic",
-  "arHearts",
-  "thCheese",
   "pineapple",
-  "exCheese",
 ];
 
 const initalOrder = {
